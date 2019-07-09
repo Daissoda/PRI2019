@@ -234,12 +234,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 BigDecimal bd = new BigDecimal(Float.toString(distanceInMeters));
                 bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
                 Toast.makeText(MainActivity.this, "Distance between the two locations is :"+bd.toString(), Toast.LENGTH_LONG).show();
-                //below code opens google maps with the location set for both from and to as below 
-                final Intent intent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://maps.google.com/maps?"
-                                + "saddr="+ Double.parseDouble(latlongCurr[0])+","+Double.parseDouble(latlongCurr[1]) + "&daddr="+Double.parseDouble(latlongLidl[0])+","+Double.parseDouble(latlongLidl[1]) ));
-                intent.setClassName("com.google.android.apps.maps","com.google.android.maps.MapsActivity");
-                startActivity(intent);
+                //below code opens google maps with the location set for both from and to as below
+//                final Intent intent = new Intent(Intent.ACTION_VIEW,
+//                        Uri.parse("http://maps.google.com/maps?"
+//                                + "saddr="+ Double.parseDouble(latlongCurr[0])+","+Double.parseDouble(latlongCurr[1]) + "&daddr="+Double.parseDouble(latlongLidl[0])+","+Double.parseDouble(latlongLidl[1]) ));
+//                intent.setClassName("com.google.android.apps.maps","com.google.android.maps.MapsActivity");
+//                startActivity(intent);
+                //Above code commented but to be uncommented to see the maps being opened with a fixed starting or ending
+
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=grocery store");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+
 //                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
 //                intent.putExtra("name_key", "Swarna");
 //                startActivity(intent);
